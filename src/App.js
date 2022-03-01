@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import CardImg from './components/CardImg.js';
+import {Navbar, Container} from 'react-bootstrap';
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar expand="lg" variant="light" bg="light">
+        <Container className='justify-content-center'>
+          <Navbar.Brand href="#">2</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <div className="d-flex flex-column vh-100 justify-content-center align-items-center text-center">
+      {/* <CardImg numButtons={numButtons} buttons={buttons} answer={answer} onRetry={setState} />  */}
+    </div>
     </div>
   );
 }
