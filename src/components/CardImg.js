@@ -28,14 +28,6 @@ const CardImg = (props) => {
             </Container>
         </Card.Body>
         <div>
-                <Button className={btnClassName} >Play Again!</Button>
-                <InputGroup className={btnClassName}>
-                    <DropdownButton  variant="outline-secondary" title="Number of Colors" id="input-group-dropdown-1">
-                    <Dropdown.Item href="#">3</Dropdown.Item>
-                    <Dropdown.Item href="#">6</Dropdown.Item>
-                    <Dropdown.Item href="#">9</Dropdown.Item>
-                    </DropdownButton>
-                </InputGroup>
         </div>
         </Card>
         </div>
