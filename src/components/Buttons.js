@@ -1,29 +1,16 @@
-import { Button } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
+import images from '../images/Images';
 
 
-
-
-const Buttons = (props) => {
-
-    
-    let buttons = props.buttons;
-
-    
-
-    const checkColor = (e) => {
-        if(e.target.style.backgroundColor === props.answer) {
-            props.onCorrect(true);
-            props.setTxt(true);
-            console.log('Correct!');
-        } else {
-            props.setTxt(false);
-        }
-    }
-
+const Buttons = (props) => {   
+    let i = 0;
     return(
         <div>
             {props.buttons.map(element =>
-                <Button className="p-5 border-0 rounded m-2" key={element} onClick={checkColor} style={{backgroundColor: element}}  ></Button>
+                <button className="border-0 bg-none" key={i++}>
+                    <Image src={images[element]} alt={element} width="50px"/>
+                </button> 
+                
             )}
         </div>
     )
