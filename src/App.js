@@ -1,78 +1,52 @@
-// import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardImg from './components/CardImg.js';
 import {Navbar, Container} from 'react-bootstrap';
 import arrayShuffle from 'array-shuffle';
+import images from './images/Images.js';
 
 
 function App() {
 
   let numButtons = 8;
-  let buttons = [];
-  let answer;
+  const [buttons, setButtons] = useState([]);
+  const [correctAnswer, setCorrectAnswer] = useState('');
 
-  const [isState, setState] = useState( {
-    buttons: generateColors,
-    answer : buttons.at(Math.random() * numButtons)
-  });
+  const [isTrue, setTrue] = useState(true);
 
   // generate random image number
-  const generateImages = () => {
+  const generateRandom = () => {
     let rnd1 = Math.floor(Math.random() * 3);
     let rnd2 = Math.floor(Math.random() * 3);
-
-    let img1 = rnd1;
-    let img2 = rnd2;
-
-    return [img1, img2];
+  
+    return [rnd1, rnd2];
   }
 
-  let [img1, img2] = generateImages();
-
   // put the image number to the array
-  const assignImages = (img1, img2) => {
-    let btns = [], answer;
+  const assignImages = () => {
+    let [rnd1, rnd2] = generateRandom();
+    let btns = [];
     for(let i=0;i<numButtons;i++) {
-      btns.push(img1);
+      btns.push(images[rnd1])
     }
-    btns.push(img2); // one elem must have different img
-    answer = img2;
-    return btns, answer;
+    // one elem must have different img
+    btns.push(images[rnd2]);
+    let correctAnswer = images[rnd2];
+
+    return [btns, correctAnswer];
   } 
 
-  let [buttons, answer] = assignImages(img1, img2);
-  const shuffledBtns = arrayShuffle(buttons);
 
-  if(isState) // to re-render every time i press retry button
-    setState(false);
-
-  window.addEventListener("keydown", function (event) {
-    if (event.defaultPrevented) {
-      return; 
-    }
-    switch (event.key) {
-      case "Down": 
-      case "ArrowDown":
-        console.log(event.key);
-        break;
-      case "Up": 
-      case "ArrowUp":
-        console.log(event.key);
-        break;
-      case "Left": 
-      case "ArrowLeft":
-        console.log(event.key);
-        break;
-      case "Right": 
-      case "ArrowRight":
-        console.log(event.key);
-        break;
-      default:
-        return; 
-    }
-    event.preventDefault();
-  }, true);
-
+  useEffect( () => {
+    newGame();
+  }, [])
   
+const newGame = () =>{
+  const [sbuttons, scorrectAnswer] = assignImages();
+  const shuffledBtns = arrayShuffle(sbuttons);
+  setButtons(shuffledBtns);
+  setCorrectAnswer(scorrectAnswer);
+} 
+
 
   return (
     <div>
@@ -82,7 +56,7 @@ function App() {
         </Container>
       </Navbar>
       <div className="d-flex flex-column vh-100 justify-content-center align-items-center text-center">
-        <CardImg buttons={shuffledBtns}  /> {/* answer={answer} onRetry={setState} */}
+        <CardImg buttons={buttons} answer={correctAnswer} newGame={newGame} />
       </div>
     </div>
   );

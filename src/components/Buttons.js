@@ -1,17 +1,70 @@
-import { Button, Image } from "react-bootstrap";
-import images from '../images/Images';
+import { useEffect } from "react";
+import { Image } from "react-bootstrap";
 
 
-const Buttons = (props) => {   
-    let i = 0;
+const Buttons = ({btn}) => {   
+
+
+
+    // console.log()
+    
+    // window.addEventListener("keydown", function (event) {
+    //     if (event.defaultPrevented) {
+    //       return;
+    //     }
+    
+    //     switch (event.key) {
+    //       case "Down":
+    //       case "ArrowDown":
+    
+    //         if (event.key === answer.position) {
+    //           console.log("Correct!");
+    //           onTrue(true);
+    //         }
+    //         console.log("Event key: " + event.key);
+    //         console.log("Answer: " + answer.position);
+    //         break;
+    //       case "Up":
+    //       case "ArrowUp":
+    //         if (event.key === answer.position) {
+    //           console.log("Correct!");
+    //           onTrue(true);
+    //         }
+    //         console.log("Event key: " + event.key);
+    //         console.log("Answer: " + answer.position);
+    //         break;
+    //       case "Left":
+    //       case "ArrowLeft":
+    //         if (event.key === answer.position) {
+    //           console.log("Correct!");
+    //           onTrue(true);
+    //         }
+    //         console.log("Event key: " + event.key);
+    //         console.log("Answer: " + answer.position);
+    //         break;
+    //       case "Right":
+    //       case "ArrowRight":
+    //         if (event.key === answer.position) {
+    //           console.log("Correct!");
+    //           onTrue(true);onTrue
+    //         }
+    //         console.log("Event key: " + event.key);
+    //         console.log("Answer: " + answer.position);
+    //         break;
+    //       default:
+    //         return;
+    //     }
+
+    //     event.preventDefault();
+    //   }, true);
+
     return(
         <div>
-            {props.buttons.map(element =>
-                <button className="border-0 bg-none" key={i++}>
-                    <Image src={images[element]} alt={element} width="50px"/>
+                <button className="border-0 bg-none">
+                    <Image src={btn.img} alt="Error loading images" width="80px"/>
                 </button> 
                 
-            )}
+     
         </div>
     )
 };
