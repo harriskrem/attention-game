@@ -4,14 +4,14 @@ import {Navbar, Container} from 'react-bootstrap';
 import arrayShuffle from 'array-shuffle';
 import images from './images/Images.js';
 
-
 function App() {
 
   let numButtons = 8;
+  
   const [buttons, setButtons] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState('');
-
-  const [isTrue, setTrue] = useState(true);
+  const [correctCounter, setCorrectCounter] = useState(0);
+  const [wrongCounter, setWrongCounter] = useState(0);
 
   // generate random image number
   const generateRandom = () => {
@@ -37,8 +37,8 @@ function App() {
 
 
   useEffect( () => {
-    newGame();
-  }, [])
+      newGame();
+  }, []);
   
 const newGame = () =>{
   const [sbuttons, scorrectAnswer] = assignImages();
@@ -56,7 +56,15 @@ const newGame = () =>{
         </Container>
       </Navbar>
       <div className="d-flex flex-column vh-100 justify-content-center align-items-center text-center">
-        <CardImg buttons={buttons} answer={correctAnswer} newGame={newGame} />
+        <CardImg 
+          buttons={buttons} 
+          answer={correctAnswer} 
+          newGame={newGame} 
+          correct={correctCounter} 
+          setCorrect={setCorrectCounter} 
+          wrong={wrongCounter} 
+          setWrong={setWrongCounter} 
+          correctObj={{correctAnswer, newGame}}/>
       </div>
     </div>
   );
