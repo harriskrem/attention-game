@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import CardImg from './components/CardImg.js';
+import CardImg from './components/Cards.js';
 import {Navbar, Container} from 'react-bootstrap';
 import arrayShuffle from 'array-shuffle';
 import images from './images/Images.js';
@@ -40,22 +40,23 @@ function App() {
       newGame();
   }, []);
   
-const newGame = () =>{
-  const [sbuttons, scorrectAnswer] = assignImages();
-  const shuffledBtns = arrayShuffle(sbuttons);
-  setButtons(shuffledBtns);
-  setCorrectAnswer(scorrectAnswer);
-} 
+  const newGame = () =>{
+    const [sbuttons, scorrectAnswer] = assignImages();
+    const shuffledBtns = arrayShuffle(sbuttons);
+    setButtons(shuffledBtns);
+    setCorrectAnswer(scorrectAnswer);
+  } 
 
 
   return (
     <div>
-      <Navbar expand="lg" variant="light" bg="light">
+      <Navbar expand="lg" variant="light" bg="none" className='pe-none'>
         <Container className='justify-content-center'>
           <Navbar.Brand href="#">Attention Game</Navbar.Brand>
         </Container>
       </Navbar>
-      <div className="d-flex flex-column vh-100 justify-content-center align-items-center text-center">
+      <div className='pt-5 pb-5 mt-5 mb-5 text-center'> <h2>Press with the arrows the correct direction!</h2></div>
+      <div className="d-flex flex-column mt-5 justify-content-center align-items-center text-center">
         <CardImg 
           buttons={buttons} 
           answer={correctAnswer} 
